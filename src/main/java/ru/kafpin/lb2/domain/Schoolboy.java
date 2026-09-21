@@ -1,25 +1,40 @@
 package ru.kafpin.lb2.domain;
+
 import jakarta.persistence.*;
 import java.time.LocalDate;
 
 @Entity
 @Table(name = "schoolboys")
-
 public class Schoolboy {
-@Id
-@GeneratedValue(strategy = GenerationType.IDENTITY)
-private  Long id;
 
-    private String surname;       // фамилия
-    private String name;          // имя
-    private String patronymic;    // отчество
-    private String gender;        // пол
-    private String nationality;   // национальность
-    private Integer height;       // рост (в сантиметрах)
-    private Double weight;        // вес (в килограммах)
-    private LocalDate birthDate;  // дата рождения
-    private String phoneNumber;   // номер телефона
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    private String surname;
+    private String name;
+    private String patronymic;
+    private String gender;
+    private String nationality;
+    private Integer height;
+    private Double weight;
+    private LocalDate birthDate;
+    private String phoneNumber;
     private String homePhone;
+
+
+    public Schoolboy() {
+    }
+
+
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public String getSurname() {
         return surname;
