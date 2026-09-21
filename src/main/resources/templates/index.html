@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <title>Список школьников</title>
+</head>
+<body>
+<h1>Учет школьников</h1>
+
+<table border="1">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Фамилия</th>
+        <th>Имя</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="boy : ${schoolboys}">
+        <td th:text="${boy.id}"></td>
+        <td th:text="${boy.surname}"></td>
+        <td th:text="${boy.name}"></td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
