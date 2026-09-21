@@ -21,3 +21,9 @@
 4. При редактировании форма сохраняет первичный ключ объекта в скрытом поле `<input type="hidden">`, чтобы при обновлении не создавалась новая запись.
 5. Отправка формы инициирует POST-запрос, который сохраняет изменения в БД через метод `save()`.
 6. Удаление объекта осуществляется по GET-запросу, содержащему ID в адресной строке. Перед вызовом `deleteById()` программа проверяет наличие объекта в базе с помощью `existsById()`. После выполнения операций происходит переадресация на главную страницу.
+
+
+<img width="1744" height="426" alt="image" src="https://github.com/user-attachments/assets/a66b4a52-ea31-4f12-8355-3f9c3cdabe3e" />
+<img width="1106" height="715" alt="image" src="https://github.com/user-attachments/assets/654976ec-5ded-4de8-ac2b-016bc7cf12bd" />
+
+<img width="1747" height="354" alt="image" src="https://github.com/user-attachments/assets/eadff0e6-b861-43a7-9519-7f1a83b812ab" />
