@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ru"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Школьники</title>
+</head>
+
+<body>
+
+<h1>Список школьников</h1>
+
+<table border="1">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Фамилия</th>
+        <th>Имя</th>
+        <th>Отчество</th>
+        <th>Пол</th>
+        <th>Национальность</th>
+        <th>Рост</th>
+        <th>Вес</th>
+        <th>Дата рождения</th>
+        <th>Телефон</th>
+        <th>Класс</th>
+        <th>Школа</th>
+        <th>Адрес</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr th:each="schoolchild : ${schoolchildren}">
+        <td th:text="${schoolchild.id}"></td>
+        <td th:text="${schoolchild.lastName}"></td>
+        <td th:text="${schoolchild.firstName}"></td>
+        <td th:text="${schoolchild.middleName}"></td>
+        <td th:text="${schoolchild.gender}"></td>
+        <td th:text="${schoolchild.nationality}"></td>
+        <td th:text="${schoolchild.height}"></td>
+        <td th:text="${schoolchild.weight}"></td>
+        <td th:text="${schoolchild.birthDate}"></td>
+        <td th:text="${schoolchild.phone}"></td>
+        <td th:text="${schoolchild.schoolClass}"></td>
+        <td th:text="${schoolchild.school.name}"></td>
+        <td th:text="${schoolchild.address.city + ', ' + schoolchild.address.street + ', ' + schoolchild.address.house}"></td>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>

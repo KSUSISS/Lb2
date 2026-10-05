@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ru"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Школы</title>
+</head>
+
+
+<body>
+
+<h1>Список школ</h1>
+
+<a href="/schools/new">Добавить школу</a>
+
+<table border="1">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Название школы</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr th:each="school : ${schools}">
+        <td th:text="${school.id}"></td>
+        <td th:text="${school.name}"></td>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>

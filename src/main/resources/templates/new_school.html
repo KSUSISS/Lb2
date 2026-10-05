@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ru"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Добавить школу</title>
+</head>
+
+<body>
+
+<h1>Добавить школу</h1>
+
+<form th:action="@{/schools/new}"
+      th:object="${school}"
+      method="post">
+
+    <p>
+        Название школы:
+        <input type="text"
+               th:field="*{name}"
+               placeholder="Введите название школы">
+    </p>
+
+    <button type="submit">Добавить</button>
+
+</form>
+
+<br>
+
+<a href="/schools">Назад к списку</a>
+
+</body>
+</html>

@@ -4,6 +4,11 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.OneToOne;
+import jakarta.persistence.CascadeType;
 
 import java.time.LocalDate;
 
@@ -24,6 +29,15 @@ public class Schoolchild {
     private LocalDate birthDate;
     private String phone;
     private String schoolClass;
+
+
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @JoinColumn(name = "school_id", nullable = false)
+    private School school;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "address_id", nullable = false)
+    private Address address;
 
     public Schoolchild() {
     }
@@ -115,4 +129,21 @@ public class Schoolchild {
     public void setSchoolClass(String schoolClass) {
         this.schoolClass = schoolClass;
     }
+
+    public School getSchool() {
+        return school;
+    }
+
+    public void setSchool(School school) {
+        this.school = school;
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
+    }
+
 }

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="ru"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Добавить школьника</title>
+</head>
+
+<body>
+
+<h1>Добавить школьника</h1>
+
+<form th:action="@{/schoolchildren/new}"
+      th:object="${schoolchild}"
+      method="post">
+
+    <p>
+        Фамилия:
+        <input type="text" th:field="*{lastName}">
+    </p>
+
+    <p>
+        Имя:
+        <input type="text" th:field="*{firstName}">
+    </p>
+
+    <p>
+        Отчество:
+        <input type="text" th:field="*{middleName}">
+    </p>
+
+    <p>
+        Пол:
+        <input type="text" th:field="*{gender}">
+    </p>
+
+    <p>
+        Национальность:
+        <input type="text" th:field="*{nationality}">
+    </p>
+
+    <p>
+        Рост:
+        <input type="number" th:field="*{height}">
+    </p>
+
+    <p>
+        Вес:
+        <input type="number" th:field="*{weight}">
+    </p>
+
+    <p>
+        Дата рождения:
+        <input type="date" th:field="*{birthDate}">
+    </p>
+
+    <p>
+        Телефон:
+        <input type="text" th:field="*{phone}">
+    </p>
+
+    <p>
+        Класс:
+        <input type="text" th:field="*{schoolClass}">
+    </p>
+
+    <p>
+        Школа:
+        <select th:field="*{school}">
+            <option value="">Выберите школу</option>
+
+            <option th:each="school : ${schools}"
+                    th:value="${school.id}"
+                    th:text="${school.name}">
+            </option>
+        </select>
+    </p>
+
+    <h3>Адрес</h3>
+
+    <p>
+        Почтовый индекс:
+        <input type="text" th:field="*{address.postalCode}">
+    </p>
+
+    <p>
+        Страна:
+        <input type="text" th:field="*{address.country}">
+    </p>
+
+    <p>
+        Область:
+        <input type="text" th:field="*{address.region}">
+    </p>
+
+    <p>
+        Район:
+        <input type="text" th:field="*{address.district}">
+    </p>
+
+    <p>
+        Город:
+        <input type="text" th:field="*{address.city}">
+    </p>
+
+    <p>
+        Улица:
+        <input type="text" th:field="*{address.street}">
+    </p>
+
+    <p>
+        Дом:
+        <input type="text" th:field="*{address.house}">
+    </p>
+
+    <p>
+        Квартира:
+        <input type="text" th:field="*{address.apartment}">
+    </p>
+
+    <button type="submit">Добавить школьника</button>
+
+</form>
+
+<br>
+
+<a href="/schoolchildren">Назад к списку</a>
+
+</body>
+</html>
