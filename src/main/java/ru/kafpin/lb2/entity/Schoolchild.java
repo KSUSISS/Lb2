@@ -1,22 +1,9 @@
 package ru.kafpin.lb2.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.OneToOne;
-import jakarta.persistence.CascadeType;
-
 import java.time.LocalDate;
 
-@Entity
 public class Schoolchild {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
     private String lastName;
@@ -30,13 +17,8 @@ public class Schoolchild {
     private String phone;
     private String schoolClass;
 
-
-    @ManyToOne(fetch = FetchType.EAGER, optional = false)
-    @JoinColumn(name = "school_id", nullable = false)
     private School school;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "address_id", nullable = false)
     private Address address;
 
     public Schoolchild() {

@@ -115,8 +115,7 @@ public class SchoolRestController {
                         "Школа с ID " + id + " не найдена"
                 ));
 
-        if (school.getSchoolchildren() != null
-                && !school.getSchoolchildren().isEmpty()) {
+        if (schoolRepository.hasSchoolchildren(id)) {
             throw new ResponseStatusException(
                     HttpStatus.CONFLICT,
                     "Нельзя удалить школу, в которой есть школьники"
