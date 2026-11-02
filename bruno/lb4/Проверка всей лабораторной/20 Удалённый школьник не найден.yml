@@ -1,0 +1,15 @@
+info:
+  name: Удалённый школьник не найден
+  type: http
+  seq: 20
+
+http:
+  method: GET
+  url: "http://localhost:8080/api/schoolchildren/{{labChildId}}"
+  auth: inherit
+
+runtime:
+  scripts:
+    - type: tests
+      code: |-
+        test("HTTP 404", () => { expect(res.status).to.equal(404); });

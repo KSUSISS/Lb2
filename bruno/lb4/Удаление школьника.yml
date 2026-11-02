@@ -1,0 +1,16 @@
+info:
+  name: Удаление школьника
+  type: http
+  seq: 9
+
+http:
+  method: DELETE
+  url: http://localhost:8080/api/schoolchildren/999999999
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false

@@ -1,0 +1,16 @@
+info:
+  name: Получить все данные школьника
+  type: http
+  seq: 8
+
+http:
+  method: GET
+  url: "http://localhost:8080/api/schoolchildren/{{labChildId}}"
+  auth: inherit
+
+runtime:
+  scripts:
+    - type: tests
+      code: |-
+        test("HTTP 200", () => { expect(res.status).to.equal(200); });
+        test("Телефон и дата рождения", () => { expect(res.body.phone).to.equal("+70000000099"); expect(res.body.birthDate).to.equal("2012-05-15"); });

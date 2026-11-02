@@ -1,0 +1,44 @@
+info:
+  name: Отклонить несуществующую школу
+  type: http
+  seq: 15
+
+http:
+  method: POST
+  url: "http://localhost:8080/api/schoolchildren"
+  headers:
+    - name: Content-Type
+      value: application/json
+  body:
+    type: json
+    data: |-
+      {
+        "lastName": "Проверочный",
+        "firstName": "Иван",
+        "middleName": "Тестович",
+        "gender": "М",
+        "nationality": "Тестовая",
+        "height": 160,
+        "weight": 50,
+        "birthDate": "2012-05-15",
+        "phone": "+70000000099",
+        "schoolClass": "7А",
+        "schoolId": 999999999,
+        "address": {
+          "postalCode": "000000",
+          "country": "Россия",
+          "region": "Тестовая область",
+          "district": "Тестовый район",
+          "city": "Тестовый город",
+          "street": "Учебная",
+          "house": "99",
+          "apartment": "1"
+        }
+      }
+  auth: inherit
+
+runtime:
+  scripts:
+    - type: tests
+      code: |-
+        test("HTTP 404", () => { expect(res.status).to.equal(404); });

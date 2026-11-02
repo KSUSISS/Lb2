@@ -1,0 +1,15 @@
+info:
+  name: Удалить тестового школьника
+  type: http
+  seq: 19
+
+http:
+  method: DELETE
+  url: "http://localhost:8080/api/schoolchildren/{{labChildId}}"
+  auth: inherit
+
+runtime:
+  scripts:
+    - type: tests
+      code: |-
+        test("HTTP 204", () => { expect(res.status).to.equal(204); });

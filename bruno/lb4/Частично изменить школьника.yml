@@ -1,0 +1,22 @@
+info:
+  name: Частично изменить школьника
+  type: http
+  seq: 8
+
+http:
+  method: PATCH
+  url: http://localhost:8080/api/schoolchildren/2
+  body:
+    type: json
+    data: |-
+      {
+        "schoolClass": ""
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false

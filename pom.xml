@@ -17,7 +17,7 @@
 	<version>0.0.1-SNAPSHOT</version>
 
 	<name>lb2</name>
-	<description>Лабораторная работа 3 - Связи между таблицами</description>
+	<description>Лабораторная работа 4 - Построение REST API</description>
 
 	<properties>
 		<java.version>17</java.version>

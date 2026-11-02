@@ -1,0 +1,16 @@
+info:
+  name: Статистика школьников
+  type: http
+  seq: 16
+
+http:
+  method: GET
+  url: "http://localhost:8080/api/schoolchildren/statistics"
+  auth: inherit
+
+runtime:
+  scripts:
+    - type: tests
+      code: |-
+        test("HTTP 200", () => { expect(res.status).to.equal(200); });
+        test("Тестовая школа в статистике", () => { expect(res.body.total).to.be.at.least(1); expect(res.body.bySchool[String(bru.getVar("labSchoolId"))]).to.equal(1); });

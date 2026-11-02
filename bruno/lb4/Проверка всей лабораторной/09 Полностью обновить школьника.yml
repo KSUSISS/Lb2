@@ -1,0 +1,45 @@
+info:
+  name: Полностью обновить школьника
+  type: http
+  seq: 9
+
+http:
+  method: PUT
+  url: "http://localhost:8080/api/schoolchildren/{{labChildId}}"
+  headers:
+    - name: Content-Type
+      value: application/json
+  body:
+    type: json
+    data: |-
+      {
+        "lastName": "Проверочный",
+        "firstName": "Иван",
+        "middleName": "Тестович",
+        "gender": "М",
+        "nationality": "Тестовая",
+        "height": 160,
+        "weight": 50,
+        "birthDate": "2012-05-15",
+        "phone": "+70000000099",
+        "schoolClass": "8А",
+        "schoolId": "{{labSchoolId}}",
+        "address": {
+          "postalCode": "000000",
+          "country": "Россия",
+          "region": "Тестовая область",
+          "district": "Тестовый район",
+          "city": "Новый тестовый город",
+          "street": "Учебная",
+          "house": "99",
+          "apartment": "1"
+        }
+      }
+  auth: inherit
+
+runtime:
+  scripts:
+    - type: tests
+      code: |-
+        test("HTTP 200", () => { expect(res.status).to.equal(200); });
+        test("Адрес обновлён без дублирования", () => { expect(res.body.address.id).to.equal(Number(bru.getVar("labAddressId"))); expect(res.body.address.city).to.equal("Новый тестовый город"); });

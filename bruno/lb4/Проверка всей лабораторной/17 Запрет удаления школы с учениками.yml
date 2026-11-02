@@ -1,0 +1,15 @@
+info:
+  name: Запрет удаления школы с учениками
+  type: http
+  seq: 17
+
+http:
+  method: DELETE
+  url: "http://localhost:8080/api/schools/{{labSchoolId}}"
+  auth: inherit
+
+runtime:
+  scripts:
+    - type: tests
+      code: |-
+        test("HTTP 409", () => { expect(res.status).to.equal(409); });

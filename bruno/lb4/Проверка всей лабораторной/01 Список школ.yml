@@ -1,0 +1,15 @@
+info:
+  name: Список школ
+  type: http
+  seq: 1
+
+http:
+  method: GET
+  url: "http://localhost:8080/api/schools"
+  auth: inherit
+
+runtime:
+  scripts:
+    - type: tests
+      code: |-
+        test("HTTP 200", () => { expect(res.status).to.equal(200); });

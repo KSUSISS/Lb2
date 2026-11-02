@@ -14,10 +14,13 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import ru.kafpin.lb2.repository.SchoolRepository;
 
+import org.springframework.transaction.annotation.Transactional;
+
 import java.util.ArrayList;
 import java.util.List;
 
 @RestController
+@Transactional
 @RequestMapping("/api/schools")
 public class SchoolRestController {
 

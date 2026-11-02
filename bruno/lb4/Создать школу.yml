@@ -1,0 +1,22 @@
+info:
+  name: Создать школу
+  type: http
+  seq: 1
+
+http:
+  method: POST
+  url: http://localhost:8080/api/schools
+  body:
+    type: json
+    data: |-
+      {
+        "name": "Школа № 25 обновлённая"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false

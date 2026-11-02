@@ -1,0 +1,25 @@
+info:
+  name: Создать тестовую школу
+  type: http
+  seq: 2
+
+http:
+  method: POST
+  url: "http://localhost:8080/api/schools"
+  headers:
+    - name: Content-Type
+      value: application/json
+  body:
+    type: json
+    data: |-
+      {
+        "name": "Тестовая школа Bruno ЛБ4"
+      }
+  auth: inherit
+
+runtime:
+  scripts:
+    - type: tests
+      code: |-
+        test("HTTP 201", () => { expect(res.status).to.equal(201); });
+        if (res.status === 201) bru.setVar("labSchoolId", res.body.id);

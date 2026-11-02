@@ -1,0 +1,25 @@
+info:
+  name: Изменить только телефон
+  type: http
+  seq: 10
+
+http:
+  method: PATCH
+  url: "http://localhost:8080/api/schoolchildren/{{labChildId}}"
+  headers:
+    - name: Content-Type
+      value: application/json
+  body:
+    type: json
+    data: |-
+      {
+        "phone": "+70000000100"
+      }
+  auth: inherit
+
+runtime:
+  scripts:
+    - type: tests
+      code: |-
+        test("HTTP 200", () => { expect(res.status).to.equal(200); });
+        test("Класс и адрес сохранены", () => { expect(res.body.phone).to.equal("+70000000100"); expect(res.body.schoolClass).to.equal("8А"); expect(res.body.address.city).to.equal("Новый тестовый город"); });

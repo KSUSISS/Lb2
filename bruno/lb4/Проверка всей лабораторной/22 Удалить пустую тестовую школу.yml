@@ -1,0 +1,15 @@
+info:
+  name: Удалить пустую тестовую школу
+  type: http
+  seq: 22
+
+http:
+  method: DELETE
+  url: "http://localhost:8080/api/schools/{{labSchoolId}}"
+  auth: inherit
+
+runtime:
+  scripts:
+    - type: tests
+      code: |-
+        test("HTTP 204", () => { expect(res.status).to.equal(204); });

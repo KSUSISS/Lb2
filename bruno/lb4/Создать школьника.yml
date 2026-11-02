@@ -1,0 +1,42 @@
+info:
+  name: Создать школьника
+  type: http
+  seq: 5
+
+http:
+  method: POST
+  url: http://localhost:8080/api/schoolchildren
+  body:
+    type: json
+    data: |-
+      {
+        "lastName": "Орлов",
+        "firstName": "Максим",
+        "middleName": "Александрович",
+        "gender": "М",
+        "nationality": "Русский",
+        "height": 165,
+        "weight": 55,
+        "birthDate": "2011-04-20",
+        "phone": "+70000000008",
+        "schoolClass": "8Б",
+        "schoolId": 2,
+        "address": {
+          "postalCode": "000000",
+          "country": "Россия",
+          "region": "Тестовая область",
+          "district": "Тестовый район",
+          "city": "Тестовый город",
+          "street": "Учебная",
+          "house": "8",
+          "apartment": "12"
+        }
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false

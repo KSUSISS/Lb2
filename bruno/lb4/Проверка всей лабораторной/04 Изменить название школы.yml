@@ -1,0 +1,25 @@
+info:
+  name: Изменить название школы
+  type: http
+  seq: 4
+
+http:
+  method: PUT
+  url: "http://localhost:8080/api/schools/{{labSchoolId}}"
+  headers:
+    - name: Content-Type
+      value: application/json
+  body:
+    type: json
+    data: |-
+      {
+        "name": "Тестовая школа Bruno обновлена"
+      }
+  auth: inherit
+
+runtime:
+  scripts:
+    - type: tests
+      code: |-
+        test("HTTP 200", () => { expect(res.status).to.equal(200); });
+        test("Название сохранено", () => expect(res.body.name).to.equal("Тестовая школа Bruno обновлена"));

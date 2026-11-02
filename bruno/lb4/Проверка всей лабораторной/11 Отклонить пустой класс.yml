@@ -1,0 +1,25 @@
+info:
+  name: Отклонить пустой класс
+  type: http
+  seq: 11
+
+http:
+  method: PATCH
+  url: "http://localhost:8080/api/schoolchildren/{{labChildId}}"
+  headers:
+    - name: Content-Type
+      value: application/json
+  body:
+    type: json
+    data: |-
+      {
+        "phone": "+70000000200",
+        "schoolClass": " "
+      }
+  auth: inherit
+
+runtime:
+  scripts:
+    - type: tests
+      code: |-
+        test("HTTP 400", () => { expect(res.status).to.equal(400); });

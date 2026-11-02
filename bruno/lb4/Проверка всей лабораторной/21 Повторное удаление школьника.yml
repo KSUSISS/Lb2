@@ -1,0 +1,15 @@
+info:
+  name: Повторное удаление школьника
+  type: http
+  seq: 21
+
+http:
+  method: DELETE
+  url: "http://localhost:8080/api/schoolchildren/{{labChildId}}"
+  auth: inherit
+
+runtime:
+  scripts:
+    - type: tests
+      code: |-
+        test("HTTP 404", () => { expect(res.status).to.equal(404); });

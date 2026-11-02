@@ -1,0 +1,22 @@
+info:
+  name: Отклонить пустой PATCH
+  type: http
+  seq: 13
+
+http:
+  method: PATCH
+  url: "http://localhost:8080/api/schoolchildren/{{labChildId}}"
+  headers:
+    - name: Content-Type
+      value: application/json
+  body:
+    type: json
+    data: |-
+      {}
+  auth: inherit
+
+runtime:
+  scripts:
+    - type: tests
+      code: |-
+        test("HTTP 400", () => { expect(res.status).to.equal(400); });

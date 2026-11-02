@@ -1,0 +1,15 @@
+info:
+  name: Школа не найдена
+  type: http
+  seq: 6
+
+http:
+  method: GET
+  url: "http://localhost:8080/api/schools/999999999"
+  auth: inherit
+
+runtime:
+  scripts:
+    - type: tests
+      code: |-
+        test("HTTP 404", () => { expect(res.status).to.equal(404); });
