@@ -1,4 +1,4 @@
-# Лабораторная работа № 5 — Работа с реляционными БД через JdbcTemplate
+<img width="711" height="387" alt="image" src="https://github.com/user-attachments/assets/5e7d1ed1-a42c-4adf-b4d5-090343667b80" /># Лабораторная работа № 5 — Работа с реляционными БД через JdbcTemplate
 
 Вариант 2: «Школьник». Spring Boot, Java 17+, JdbcTemplate, Bean Validation, H2 и Thymeleaf.
 
@@ -96,3 +96,16 @@ REST-контроллеры возвращают DTO, поэтому JSON не �
 ## Скриншоты результатов тестирования (curl или Postman)
 
 Скриншоты для отчёта добавляются после ручной проверки. Готовые запросы для работы с API находятся в коллекции Bruno, описанной выше.
+
+`<img width="1555" height="467" alt="image" src="https://github.com/user-attachments/assets/595b6126-7e60-4397-9408-0d517fad73c6" />
+`Рисунок 1 - Школьники
+
+<img width="711" height="387" alt="image" src="https://github.com/user-attachments/assets/7c5423fb-bacf-4999-a5f0-2167bf1e8ba5" />
+Рисунок 2 - Школы
+
+<img width="1920" height="537" alt="image" src="https://github.com/user-attachments/assets/42088363-ee07-4237-8010-e6365c2164c4" />
+Рисунок 3 - RESTAPI
+`
+
+
+`
