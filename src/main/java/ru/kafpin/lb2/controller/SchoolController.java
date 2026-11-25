@@ -1,7 +1,9 @@
 package ru.kafpin.lb2.controller;
 
+import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import ru.kafpin.lb2.repository.SchoolRepository;
@@ -26,14 +28,18 @@ public class SchoolController {
     }
     @GetMapping("/new")
     public String newSchool(Model model) {
-        model.addAttribute("school", new ru.kafpin.lb2.entity.School());
+        model.addAttribute("school", new SchoolForm(""));
         return "new_school";
     }
 
     @PostMapping("/new")
     public String saveSchool(
-            @org.springframework.web.bind.annotation.ModelAttribute School school) {
-
+            @Valid @ModelAttribute("school") SchoolForm form, BindingResult result) {
+        if (result.hasErrors()) {
+            return "new_school";
+        }
+        School school = new School();
+        school.setName(form.name().strip());
         schoolRepository.save(school);
         return "redirect:/schools";
     }

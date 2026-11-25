@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{portal :: head('Доступ ограничен')}"><title>Доступ ограничен</title></head>
+<body>
+<div class="layout">
+    <aside th:replace="~{portal :: sidebar('')}"></aside>
+    <main class="workspace">
+        <header class="page-header">
+            <div>
+                <h1>Доступ ограничен</h1>
+                <p>У вашей учётной записи нет прав на это действие.</p>
+            </div>
+        </header>
+        <a class="button button-primary" th:href="@{/schools}">К списку школ</a>
+    </main>
+</div>
+</body>
+</html>

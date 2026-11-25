@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:fragment="head(title)">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#123a30">
+    <title th:text="${title + ' · Школьный реестр'}">Школьный реестр</title>
+    <link rel="stylesheet" th:href="@{/css/portal.css}">
+</head>
+<body>
+<aside class="sidebar" th:fragment="sidebar(section)">
+    <a class="brand" th:href="@{/schools}">
+        <span class="brand-mark" aria-hidden="true"><span></span></span>
+        <span>Школьный<br>реестр</span>
+    </a>
+    <nav class="navigation" aria-label="Разделы">
+        <a th:href="@{/schools}" th:aria-current="${section == 'schools' ? 'page' : null}">Школы</a>
+        <a th:href="@{/schoolchildren}" th:aria-current="${section == 'children' ? 'page' : null}">Школьники</a>
+    </nav>
+    <div class="account" sec:authorize="isAuthenticated()">
+        <span class="account-name" sec:authentication="name"></span>
+        <span class="account-role" sec:authorize="hasRole('ADMIN')">Администратор</span>
+        <span class="account-role" sec:authorize="hasRole('USER')">Просмотр</span>
+        <form th:action="@{/logout}" method="post">
+            <button class="button account-logout" type="submit">Выйти</button>
+        </form>
+    </div>
+</aside>
+</body>
+</html>

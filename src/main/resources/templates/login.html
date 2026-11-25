@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{portal :: head('Вход')}"><title>Вход</title></head>
+<body>
+<main class="login-layout">
+    <div class="login-intro">
+        <div class="brand">
+            <span class="brand-mark" aria-hidden="true"><span></span></span>
+            <span>Школьный реестр</span>
+        </div>
+        <p>Войдите, чтобы открыть списки школ и школьников.</p>
+    </div>
+    <section class="panel login-panel" aria-labelledby="login-heading">
+        <h1 id="login-heading">Вход в реестр</h1>
+        <p class="notice notice-error" role="alert" th:if="${param.error}">Неверный логин или пароль.</p>
+        <p class="notice notice-success" role="status" th:if="${param.logout}">Вы вышли из учётной записи.</p>
+        <form class="login-form" th:action="@{/login}" method="post">
+            <label class="field"><span>Логин</span><input name="username" autocomplete="username" required></label>
+            <label class="field"><span>Пароль</span><input name="password" type="password" autocomplete="current-password" required></label>
+            <button class="button button-primary" type="submit">Войти</button>
+        </form>
+    </section>
+</main>
+</body>
+</html>

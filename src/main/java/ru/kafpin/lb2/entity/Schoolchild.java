@@ -1,5 +1,7 @@
 package ru.kafpin.lb2.entity;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.time.LocalDate;
 
 public class Schoolchild {
@@ -13,6 +15,7 @@ public class Schoolchild {
     private String nationality;
     private int height;
     private int weight;
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private LocalDate birthDate;
     private String phone;
     private String schoolClass;

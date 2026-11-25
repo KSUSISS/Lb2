@@ -1,34 +1,29 @@
 <!DOCTYPE html>
-<html lang="ru"
-      xmlns:th="http://www.thymeleaf.org">
-
-<head>
-    <meta charset="UTF-8">
-    <title>Добавить школу</title>
-</head>
-
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{portal :: head('Добавить школу')}"><title>Добавить школу</title></head>
 <body>
+<div class="layout">
+    <aside th:replace="~{portal :: sidebar('schools')}"></aside>
+    <main class="workspace">
+        <a class="back-link text-link" th:href="@{/schools}">К списку школ</a>
+        <header class="page-header">
+            <div><h1>Добавить школу</h1></div>
+        </header>
 
-<h1>Добавить школу</h1>
-
-<form th:action="@{/schools/new}"
-      th:object="${school}"
-      method="post">
-
-    <p>
-        Название школы:
-        <input type="text"
-               th:field="*{name}"
-               placeholder="Введите название школы">
-    </p>
-
-    <button type="submit">Добавить</button>
-
-</form>
-
-<br>
-
-<a href="/schools">Назад к списку</a>
-
+        <form class="panel form-panel compact-form" th:action="@{/schools/new}" th:object="${school}" method="post">
+            <div class="form-content">
+                <label class="field" for="name">
+                    <span>Название школы</span>
+                    <input type="text" th:field="*{name}" placeholder="Например, Школа № 14" required maxlength="255">
+                    <span class="form-error" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
+                </label>
+            </div>
+            <div class="form-actions">
+                <button class="button button-primary" type="submit">Добавить школу</button>
+                <a class="button button-secondary" th:href="@{/schools}">Отмена</a>
+            </div>
+        </form>
+    </main>
+</div>
 </body>
 </html>

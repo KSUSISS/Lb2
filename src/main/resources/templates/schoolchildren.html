@@ -1,67 +1,74 @@
 <!DOCTYPE html>
-<html lang="ru"
-      xmlns:th="http://www.thymeleaf.org">
-
-<head>
-    <meta charset="UTF-8">
-    <title>Школьники</title>
-</head>
-
+<html lang="ru" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="~{portal :: head('Школьники')}"><title>Школьники</title></head>
 <body>
+<div class="layout">
+    <aside th:replace="~{portal :: sidebar('children')}"></aside>
+    <main class="workspace">
+        <header class="page-header">
+            <div>
+                <h1>Школьники</h1>
+                <p>Список школьников с данными о школе, классе и адресе.</p>
+            </div>
+            <a class="button button-primary" th:href="@{/schoolchildren/new}" sec:authorize="hasRole('ADMIN')"><span aria-hidden="true">+</span> Добавить школьника</a>
+        </header>
 
-<h1>Список школьников</h1>
-
-<form action="/schoolchildren/search/lastname" method="get">
-
-    <input type="text"
-           name="lastName"
-           placeholder="Введите фамилию">
-
-    <button type="submit">Найти</button>
-
-</form>
-
-<br>
-
-<a href="/schoolchildren">Показать всех</a>
-
-<table border="1">
-    <thead>
-    <tr>
-        <th>ID</th>
-        <th>Фамилия</th>
-        <th>Имя</th>
-        <th>Отчество</th>
-        <th>Пол</th>
-        <th>Национальность</th>
-        <th>Рост</th>
-        <th>Вес</th>
-        <th>Дата рождения</th>
-        <th>Телефон</th>
-        <th>Класс</th>
-        <th>Школа</th>
-        <th>Адрес</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    <tr th:each="schoolchild : ${schoolchildren}">
-        <td th:text="${schoolchild.id}"></td>
-        <td th:text="${schoolchild.lastName}"></td>
-        <td th:text="${schoolchild.firstName}"></td>
-        <td th:text="${schoolchild.middleName}"></td>
-        <td th:text="${schoolchild.gender}"></td>
-        <td th:text="${schoolchild.nationality}"></td>
-        <td th:text="${schoolchild.height}"></td>
-        <td th:text="${schoolchild.weight}"></td>
-        <td th:text="${schoolchild.birthDate}"></td>
-        <td th:text="${schoolchild.phone}"></td>
-        <td th:text="${schoolchild.schoolClass}"></td>
-        <td th:text="${schoolchild.school.name}"></td>
-        <td th:text="${schoolchild.address.city + ', ' + schoolchild.address.street + ', ' + schoolchild.address.house}"></td>
-    </tr>
-    </tbody>
-</table>
-
+        <section class="panel" aria-labelledby="children-heading">
+            <div class="panel-heading">
+                <h2 id="children-heading">Список школьников</h2>
+                <span class="count" th:text="${'Записей: ' + #lists.size(schoolchildren)}"></span>
+            </div>
+            <div class="toolbar">
+                <form class="search" th:action="@{/schoolchildren/search/lastname}" method="get" role="search">
+                    <label class="visually-hidden" for="last-name-search">Фамилия школьника</label>
+                    <input id="last-name-search" name="lastName" type="search" placeholder="Введите фамилию"
+                           th:value="${param.lastName != null ? param.lastName[0] : ''}">
+                    <button class="button button-secondary" type="submit">Найти</button>
+                </form>
+                <a class="text-link" th:href="@{/schoolchildren}">Показать всех</a>
+            </div>
+            <div class="table-scroll" tabindex="0" role="region" aria-labelledby="children-heading">
+                <table class="children-table" aria-labelledby="children-heading">
+                    <thead>
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">ФИО</th>
+                        <th scope="col">Школа и класс</th>
+                        <th scope="col">Дата рождения</th>
+                        <th scope="col">Сведения</th>
+                        <th scope="col">Телефон</th>
+                        <th scope="col">Адрес</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="schoolchild : ${schoolchildren}">
+                        <td class="identifier" th:text="${schoolchild.id}"></td>
+                        <td><span class="record-name"
+                                  th:text="${#strings.trim(schoolchild.lastName + ' ' + schoolchild.firstName + ' ' + (schoolchild.middleName ?: ''))}"></span></td>
+                        <td>
+                            <span class="record-name" th:text="${schoolchild.school.name}"></span>
+                            <span class="cell-detail" th:text="${schoolchild.schoolClass}"></span>
+                        </td>
+                        <td class="nowrap" th:text="${schoolchild.birthDate}"></td>
+                        <td>
+                            <span th:text="${schoolchild.gender}"></span>
+                            <span class="cell-detail" th:text="${schoolchild.nationality}"></span>
+                            <span class="cell-detail">
+                                Рост <span th:text="${schoolchild.height}"></span> · Вес <span th:text="${schoolchild.weight}"></span>
+                            </span>
+                        </td>
+                        <td class="nowrap" th:text="${schoolchild.phone}"></td>
+                        <td th:text="${schoolchild.address.city + ', ' + schoolchild.address.street + ', ' + schoolchild.address.house}"></td>
+                    </tr>
+                    <tr th:if="${#lists.isEmpty(schoolchildren)}">
+                        <td class="empty-state" colspan="7"
+                            th:text="${param.lastName != null ? 'По этой фамилии никого не найдено.' : 'Школьников пока нет.'}"></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+</div>
 </body>
 </html>
